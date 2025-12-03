@@ -9,7 +9,7 @@ char* safe_string_copy(char* dest, unsigned int destsize, char* src)
 		throw std::overflow_error("possible buffer overflow");
 
 	char* ret = dest;
-	for (unsigned int i = 0; i < destsize * sizeof(*src); i++)
+	for (unsigned int i = 0; i < srcsize * sizeof(*src); i++)
 		*dest++ = *src++;
 	return ret;
 }
@@ -19,7 +19,7 @@ char* safe_string_copy(char* dest, unsigned int destsize, char* src)
 void part2()
 {
 	char password[] = "secret";
-	char dest[BUF_SIZE];
+	char dest[BUF_SIZE] = { 0 };
 	char src[] = "hello world!";
 
 	safe_string_copy(dest, BUF_SIZE, src);
